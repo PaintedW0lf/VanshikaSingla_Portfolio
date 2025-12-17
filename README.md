@@ -39,7 +39,4 @@ View the portfolio at:
 - Vanilla JavaScript
 - Google Fonts (Inter)
 
-## Pending
-
-- Upload resume PDF file to root directory as `resume.pdf`
 
