@@ -4,7 +4,7 @@ Modern, interactive portfolio showcasing expertise in Software Engineering, Data
 
 ## Live Site
 
-View the portfolio at: [vanshikasingla.github.io](https://paintedw0lf.github.io/VanshikaSingla_Portfolio.github.io/)
+View the portfolio at: 
 
 ## Features
 
@@ -43,8 +43,3 @@ View the portfolio at: [vanshikasingla.github.io](https://paintedw0lf.github.io/
 
 - Upload resume PDF file to root directory as `resume.pdf`
 
-## Contact
-
-- Email: vanshikasingla09@gmail.com
-- LinkedIn: [linkedin.com/in/vanshika--singla](https://linkedin.com/in/vanshika--singla)
-- GitHub: [github.com/PaintedW0lf](https://github.com/PaintedW0lf)
