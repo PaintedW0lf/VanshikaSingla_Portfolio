@@ -459,7 +459,7 @@ nav {
     background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.6),
-                0 0 20px rgba(139, 92, 246, 0.3);
+        0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 .btn-secondary {
@@ -485,7 +485,7 @@ nav {
     object-fit: cover;
     border: 4px solid var(--gold);
     box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4),
-                0 0 20px rgba(139, 92, 246, 0.3);
+        0 0 20px rgba(139, 92, 246, 0.3);
     animation: profilePulse 3s ease-in-out infinite;
 }
 
@@ -713,9 +713,11 @@ section {
     transform: translateX(8px) scale(1.02);
     border-color: var(--gold);
     box-shadow: 0 8px 25px rgba(245, 158, 11, 0.35),
-                0 0 15px rgba(139, 92, 246, 0.25),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}.timeline-item::after {
+        0 0 15px rgba(139, 92, 246, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.timeline-item::after {
     content: '✨';
     position: absolute;
     top: 1rem;
@@ -822,6 +824,65 @@ section {
     gap: 1.25rem;
 }
 
+/* Project Badges */
+.project-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    padding: 0.3rem 0.85rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 10;
+    letter-spacing: 0.5px;
+}
+
+.hackathon-badge {
+    background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    color: #0a0e27;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+    animation: badgePulse 2s ease-in-out infinite;
+}
+
+.ds-badge {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.3);
+    }
+}
+
+/* Featured project card */
+.featured-project {
+    border: 1px solid rgba(245, 158, 11, 0.4) !important;
+    background: linear-gradient(135deg, #1a1a3e 0%, #2a2450 100%) !important;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+}
+
+.featured-project:hover {
+    border-color: var(--gold) !important;
+    box-shadow: 0 12px 35px rgba(245, 158, 11, 0.5),
+        0 0 25px rgba(139, 92, 246, 0.2) !important;
+}
+
+/* Directed Studies project card */
+.directed-studies-project {
+    border: 1px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.directed-studies-project:hover {
+    border-color: var(--purple) !important;
+    box-shadow: 0 12px 30px rgba(139, 92, 246, 0.35),
+        0 0 20px rgba(245, 158, 11, 0.15) !important;
+}
+
 .project-card {
     background: linear-gradient(135deg, #1a1a3e 0%, #242458 100%);
     border-radius: 10px;
@@ -848,9 +909,11 @@ section {
     transform: translateY(-8px);
     border-color: var(--gold);
     box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4),
-                0 0 20px rgba(139, 92, 246, 0.2);
+        0 0 20px rgba(139, 92, 246, 0.2);
     background: linear-gradient(135deg, #1a1a3e 0%, #2a2a5a 100%);
-}.project-image {
+}
+
+.project-image {
     width: 100%;
     height: 180px;
     background: linear-gradient(135deg, #2a2a5a 0%, #1f1f40 100%);
