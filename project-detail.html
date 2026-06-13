@@ -1,76 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - Vanshika Singla</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Detail - Vanshika Singla</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="project-detail.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Minor overrides to ensure the page looks good even without global layout */
+        body {
+            background: var(--bg, #f7f7f8);
+            color: var(--text-dark, #111);
+            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .project-hero {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .project-hero img {
+            width: 260px;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border, #e6e6e6);
+        }
+
+        .project-meta {
+            margin-top: 1rem;
+        }
+
+        .code-link {
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+    </style>
 </head>
+
 <body>
-    <nav>
-        <div class="nav-content">
-            <a href="index.html" class="logo">Vanshika Singla</a>
-            <a href="index.html#projects" class="back-btn">← Back to Projects</a>
-        </div>
-    </nav>
+    <div class="container project-detail">
+        <a href="index.html#projects" class="back-btn">← Back to Projects</a>
 
-    <main class="project-detail">
-        <div class="container">
-            <a href="index.html#projects" class="back-btn">← All Projects</a>
-            
-            <header class="project-header">
-                <h1 class="project-title-main">[Project Title]</h1>
-                <p class="project-summary">[One-line summary of what this project accomplishes]</p>
-                <div class="project-meta">
-                    <span class="project-tag">Data Engineering</span>
-                    <span class="project-tag">Backend</span>
-                    <span class="project-tag">Analytics</span>
+        <header class="project-header">
+            <h1 class="project-title-main" id="projectTitle">Project</h1>
+            <p class="project-summary" id="projectSummary">Loading...</p>
+            <div class="project-meta" id="projectMeta"></div>
+        </header>
+
+        <div class="project-hero">
+            <div class="project-image-large">
+                <img id="projectImage" src="images/mainimage.png" alt="Project image">
+            </div>
+            <div class="project-info">
+                <div id="projectDescription" class="project-section">&nbsp;</div>
+                <div style="margin-top:1rem;">
+                    <a id="codeLink" class="btn btn-primary code-link" target="_blank" rel="noopener">View Code →</a>
                 </div>
-            </header>
-
-            <section class="project-section">
-                <h2>Problem Statement</h2>
-                <p>[What challenge existed? What gap needed to be filled? What was the context?]</p>
-            </section>
-
-            <section class="project-section">
-                <h2>Approach</h2>
-                <p>[How did you tackle the problem? What was your design or reasoning process?]</p>
-                <ul class="approach-list">
-                    <li>[Key decision or step in the process]</li>
-                    <li>[Technical consideration or design choice]</li>
-                    <li>[Implementation strategy]</li>
-                </ul>
-            </section>
-
-            <section class="project-section">
-                <h2>Tools & Technologies</h2>
-                <div class="tech-grid">
-                    <span class="tech-item">Python</span>
-                    <span class="tech-item">PostgreSQL</span>
-                    <span class="tech-item">Apache Airflow</span>
-                    <span class="tech-item">Docker</span>
-                </div>
-            </section>
-
-            <section class="project-section">
-                <h2>Outcome</h2>
-                <p>[What changed, improved, or was learned? What was the measurable impact?]</p>
-            </section>
-
-            <section class="project-section reflection">
-                <h2>Reflection</h2>
-                <p>[What does this project reveal about your thinking style or approach to problem-solving?]</p>
-            </section>
+            </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Vanshika Singla. All rights reserved.</p>
-        </div>
-    </footer>
+        <section class="project-section">
+            <h2>Approach & Tech</h2>
+            <ul id="approachList" class="approach-list"></ul>
+            <div id="techGrid" class="tech-grid" style="margin-top:1rem;"></div>
+        </section>
+
+        <section class="project-section reflection" id="reflectionSection" style="display:none;">
+            <h2>Reflection</h2>
+            <p id="reflectionText"></p>
+        </section>
+
+    </div>
+
+    <script>
+        // Minimal in-page dataset reused from the index. Add entries here for any new projects.
+        const PROJECTS = {
+            brewlytics: {
+                title: 'Brewlytics — Café Digital Twin',
+                summary: 'Built a full Digital Twin simulation engine in 1.5 days using stochastic discrete-event simulations and Monte Carlo experiments.',
+                image: 'images/brewlytics.svg',
+                code: 'https://github.com/PaintedW0lf/Brewlytics-Business-Support',
+                description: '<p>Uses Monte Carlo simulations with stochastic discrete-event simulation to predict revenue, profit, wait times, and abandonment rates across hundreds of scenarios. Features an AI Hypothesis Builder powered by GPT-4o-mini.</p>',
+                approach: ['Monte Carlo simulation', 'Discrete-event simulation', 'AI hypothesis builder (GPT)'],
+                tech: ['React', 'TypeScript', 'FastAPI', 'Python', 'Monte Carlo', 'GPT-4o']
+            },
+            prairielearn: {
+                title: 'Scalable LLM Auto-Grading System',
+                summary: 'End-to-end AI-assisted grading and feedback system for PrairieLearn integrating multiple LLMs.',
+                image: 'images/prairielearn.svg',
+                code: 'https://github.com/PrairieLearnUBCO/pl-ubco-cosc304',
+                description: '<p>Designed and deployed an end-to-end AI-assisted grading and feedback system for PrairieLearn, integrating Gemini, OpenAI, and a secure UBC-hosted LLM.</p>',
+                approach: ['Secure model hosting', 'Automated grading pipelines', 'Canvas/H5P integration'],
+                tech: ['Python', 'Gemini', 'OpenAI', 'H5P', 'PrairieLearn']
+            },
+            transformer: {
+                title: 'Transformer Model from Scratch',
+                summary: 'Implemented Transformer architecture in PyTorch with experiments on bias and attention.',
+                image: 'images/transformer.svg',
+                code: 'https://github.com/bohuie/LLMTraining',
+                description: '<p>Implemented a Transformer model from scratch in PyTorch — multi-head attention, positional encoding, and full training pipelines.</p>',
+                approach: ['From-scratch implementation', 'Controlled experiments', 'Attention analysis'],
+                tech: ['PyTorch', 'Python', 'Transformers', 'NLP', 'Deep Learning']
+            },
+            amazons: {
+                title: 'Game of Amazons AI Bot',
+                summary: 'AI bot using minimax with alpha-beta pruning; placed 3rd in tournament.',
+                image: 'images/gameof amazons.png',
+                code: 'https://github.com/PaintedW0lf/AI-bot-training',
+                description: '<p>Developed an AI bot using minimax search with Alpha-Beta pruning and heuristic evaluation.</p>',
+                approach: ['Minimax search', 'Alpha-Beta pruning', 'Heuristic design'],
+                tech: ['Java', 'AI', 'Game Theory', 'Alpha-Beta Pruning']
+            },
+            edupool: {
+                title: 'EduPool E-Learning Platform',
+                summary: 'Flask-based full-stack platform with user and course management.',
+                image: 'images/edupool.png',
+                code: 'https://github.com/PaintedW0lf/EduPool',
+                description: '<p>Flask-based full-stack platform with user management, course management, discussion portals, and automated testing with Selenium.</p>',
+                approach: ['Modular Flask architecture', 'Automated testing', 'User management'],
+                tech: ['Python', 'Flask', 'MySQL', 'RESTful API']
+            },
+            portfolio: {
+                title: 'Personal Portfolio Website',
+                summary: 'Modern, responsive portfolio with interactive animations and dynamic project showcase.',
+                image: 'images/mainimage.png',
+                code: 'https://github.com/PaintedW0lf/VanshikaSingla_Portfolio.github.io',
+                description: '<p>Modern, responsive portfolio with interactive animations, smooth scrolling, and dynamic project showcase. Features custom CSS animations and JavaScript interactions.</p>',
+                approach: ['Responsive design', 'Progressive enhancement', 'Accessible content'],
+                tech: ['HTML', 'CSS', 'JavaScript', 'Responsive Design']
+            },
+            resume: {
+                title: 'Automated Resume Creator - Data Mining',
+                summary: 'Data mining tool to extract and analyze content for resume generation.',
+                image: 'images/mining.png',
+                code: 'https://github.com/PaintedW0lf/capstone-project-team-3-Data-Mining',
+                description: '<p>Data mining tool to extract and analyze laptop content for personalized resume generation.</p>',
+                approach: ['Data extraction', 'Feature engineering', 'Template generation'],
+                tech: ['Docker', 'Python', 'Gemini API']
+            },
+            aidfinder: {
+                title: 'Aid-Finder App',
+                summary: 'Food and home shelter locator app with Firebase-powered realtime features.',
+                image: 'images/aidfinder.png',
+                code: 'https://github.com/PaintedW0lf/AID-FINDER',
+                description: '<p>Full-stack Food and Home Shelter Locator app using data from 6-7 food banks. Integrated Firebase for real-time location tracking.</p>',
+                approach: ['Realtime syncing', 'Location services', 'Mobile UX'],
+                tech: ['Java', 'Firebase', 'Android Studio', 'Google Cloud']
+            },
+            spacewatch: {
+                title: 'Space Watch - Camera detection',
+                summary: 'Face recognition platform integrating YOLOv8 and PyTorch.',
+                image: 'images/spacewatch.png',
+                code: 'https://github.com/PaintedW0lf/BChacks-',
+                description: '<p>Engineered a security-focused face recognition platform in 24 hours, integrating YOLOv8 with PyTorch for enhanced accuracy.</p>',
+                approach: ['YOLO integration', 'Realtime inference', 'Security-focused UX'],
+                tech: ['OpenCV', 'Flask', 'YOLOv8', 'PyTorch']
+            },
+            acme: {
+                title: 'Elevating ACME - Data Analysis',
+                summary: 'Comprehensive data analysis using SQL, Power Pivot, and Excel.',
+                image: 'images/elevating amce.png',
+                code: 'https://github.com/PaintedW0lf/Elevating-ACME',
+                description: '<p>Comprehensive data analysis using SQL, Power Pivot, and Excel. Applied forecasting and linear regression.</p>',
+                approach: ['Forecasting', 'Regression analysis', 'Data visualization'],
+                tech: ['SQL', 'Excel', 'Power Pivot', 'Data Analysis']
+            },
+            etf: {
+                title: 'ETF Creation - Stock Analysis',
+                summary: 'Built technology-sector ETF models using profitability and volatility analysis.',
+                image: 'images/etf.png',
+                code: 'https://github.com/PaintedW0lf/ETF_creation-Stock_Analysis',
+                description: '<p>Built technology-sector ETF models using profitability and volatility analysis.</p>',
+                approach: ['Factor selection', 'Backtesting', 'Portfolio construction'],
+                tech: ['Tableau', 'Python', 'Seaborn']
+            }
+        };
+
+        function renderProject(id) {
+            const data = PROJECTS[id];
+            const titleEl = document.getElementById('projectTitle');
+            const summaryEl = document.getElementById('projectSummary');
+            const imageEl = document.getElementById('projectImage');
+            const descEl = document.getElementById('projectDescription');
+            const approachList = document.getElementById('approachList');
+            const techGrid = document.getElementById('techGrid');
+            const codeLink = document.getElementById('codeLink');
+            const reflectionSection = document.getElementById('reflectionSection');
+            const reflectionText = document.getElementById('reflectionText');
+
+            if (!data) {
+                titleEl.textContent = 'Project not found';
+                summaryEl.textContent = 'The requested project does not exist or has not been added to this page yet.';
+                imageEl.src = 'images/mainimage.png';
+                descEl.innerHTML = '';
+                codeLink.style.display = 'none';
+                return;
+            }
+
+            titleEl.textContent = data.title;
+            summaryEl.textContent = data.summary;
+            imageEl.src = data.image;
+            imageEl.alt = data.title;
+            descEl.innerHTML = data.description;
+            codeLink.href = data.code || '#';
+            codeLink.style.display = data.code ? 'inline-block' : 'none';
+
+            approachList.innerHTML = '';
+            (data.approach || []).forEach(a => {
+                const li = document.createElement('li');
+                li.textContent = a;
+                approachList.appendChild(li);
+            });
+
+            techGrid.innerHTML = '';
+            (data.tech || []).forEach(t => {
+                const div = document.createElement('div');
+                div.className = 'tech-item';
+                div.textContent = t;
+                techGrid.appendChild(div);
+            });
+
+            // Optional reflection field
+            if (data.reflection) {
+                reflectionText.textContent = data.reflection;
+                reflectionSection.style.display = 'block';
+            }
+        }
+
+        // Parse id from URL and render
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        renderProject(id);
+    </script>
 </body>
+
 </html>
