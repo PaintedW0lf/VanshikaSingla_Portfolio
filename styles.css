@@ -278,12 +278,6 @@ nav {
     animation: goldSparkle 3s ease-in-out infinite;
 }
 
-.logo-img {
-    height: 28px;
-    width: auto;
-    margin-right: 10px;
-    vertical-align: middle;
-}
 
 .logo:hover {
     transform: scale(1.05);
