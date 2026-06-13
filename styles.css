@@ -278,6 +278,13 @@ nav {
     animation: goldSparkle 3s ease-in-out infinite;
 }
 
+.logo-img {
+    height: 28px;
+    width: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
 .logo:hover {
     transform: scale(1.05);
 }
@@ -851,9 +858,12 @@ section {
 }
 
 @keyframes badgePulse {
-    0%, 100% {
+
+    0%,
+    100% {
         box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5);
     }
+
     50% {
         box-shadow: 0 4px 25px rgba(245, 158, 11, 0.8), 0 0 15px rgba(245, 158, 11, 0.3);
     }
